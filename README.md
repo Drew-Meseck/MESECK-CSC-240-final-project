@@ -2,6 +2,7 @@
 Final Project for CSC-240 (Arduino/Assembly)
 
 Hardware Selection:
+
     1) 1x Potentiometer
     2) 2x Button
     3) 1x Adafruit 128x64 OLED screen
