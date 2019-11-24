@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final Project\main.asm Thu Nov 21 00:30:00 2019
+AVRASM ver. 2.2.7  C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm Sat Nov 23 20:37:41 2019
 
 
 EQU  SIGNATURE_000 0000001e
@@ -3219,7 +3219,7 @@ DEF  x_position   r19
 DEF  y_position   r18
 DEF  character    r17
 CSEG setup        00000617
-CSEG refresh      0000063c
+CSEG refresh      00000696
 EQU  OLED_WIDTH   00000080
 EQU  OLED_HEIGHT  00000040
 CSEG delay_1s     00000100

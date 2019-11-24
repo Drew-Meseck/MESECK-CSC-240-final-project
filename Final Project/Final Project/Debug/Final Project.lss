@@ -1,18 +1,18 @@
 
-AVRASM ver. 2.2.7  C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final Project\main.asm Thu Nov 21 00:30:00 2019
+AVRASM ver. 2.2.7  C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm Sat Nov 23 20:37:41 2019
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.3.229\avrasm\inc\tn416def.inc'
-C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final Project\main.asm(59): Including file 'C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final Project\lib_delay.asm'
-C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final Project\main.asm(60): Including file 'C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final Project\lib_SSD1306_OLED.asm'
-C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final Project\lib_SSD1306_OLED.asm(17): Including file 'C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final Project\lib_SPI.asm'
-C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final Project\main.asm(61): Including file 'C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final Project\lib_GFX.asm'
-C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final Project\lib_GFX.asm(17): Including file 'C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final Project\character_map.asm'
+C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm(59): Including file 'C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\lib_delay.asm'
+C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm(60): Including file 'C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\lib_SSD1306_OLED.asm'
+C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\lib_SSD1306_OLED.asm(17): Including file 'C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\lib_SPI.asm'
+C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm(61): Including file 'C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\lib_GFX.asm'
+C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\lib_GFX.asm(17): Including file 'C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\character_map.asm'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.3.229\avrasm\inc\tn416def.inc'
-C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final Project\main.asm(59): Including file 'C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final Project\lib_delay.asm'
-C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final Project\main.asm(60): Including file 'C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final Project\lib_SSD1306_OLED.asm'
-C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final Project\lib_SSD1306_OLED.asm(17): Including file 'C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final Project\lib_SPI.asm'
-C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final Project\main.asm(61): Including file 'C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final Project\lib_GFX.asm'
-C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final Project\lib_GFX.asm(17): Including file 'C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final Project\character_map.asm'
+C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm(59): Including file 'C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\lib_delay.asm'
+C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm(60): Including file 'C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\lib_SSD1306_OLED.asm'
+C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\lib_SSD1306_OLED.asm(17): Including file 'C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\lib_SPI.asm'
+C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm(61): Including file 'C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\lib_GFX.asm'
+C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\lib_GFX.asm(17): Including file 'C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\character_map.asm'
                                  
                                  ;
                                  
@@ -4649,7 +4649,7 @@ C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final P
                                  .org 0x0000
 000000 c616                      	rjmp setup
                                  .org 0x0008
-000008 c633                      	rjmp	refresh
+000008 c68d                      	rjmp	refresh
                                  .org 0x0100
                                  
                                  .equ		OLED_WIDTH = 128
@@ -6233,48 +6233,172 @@ C:\Users\droot\Documents\Junior Year Fall\Computer Systems\Final Project\Final P
                                  
                                  
                                  ;-------------------------LOOPS--------------------------------
-                                 title_screen:	;draws the items on the screen
-000627 e020                      	ldi		y_position, 0
-000628 e030                      	ldi		x_position, 0
+                                 title_screen:	;draws the title screen until button is pressed
+                                 
+                                 ;OBJECT "Drews"
+000627 e026                      	ldi		y_position, 6
+000628 e033                      	ldi		x_position, 3
 000629 df97                      	rcall	GFX_set_array_pos
-00062a e01d                      	ldi		character, 13
+00062a e414                      	ldi		character, 68
 00062b 931c                      	st		X, character
                                  	
-00062c e021                      	ldi		y_position, 1
-00062d e030                      	ldi		x_position, 0
+00062c e027                      	ldi		y_position, 7
+00062d e033                      	ldi		x_position, 3
 00062e df92                      	rcall	GFX_set_array_pos
-00062f e51a                      	ldi		character, 90
+00062f e712                      	ldi		character, 114
 000630 931c                      	st		X, character
                                  
-000631 e020                      	ldi		y_position, 0
-000632 e031                      	ldi		x_position, 1
+000631 e028                      	ldi		y_position, 8
+000632 e033                      	ldi		x_position, 3
 000633 df8d                      	rcall	GFX_set_array_pos
-000634 ee14                      	ldi		character, 228
+000634 e615                      	ldi		character, 101
 000635 931c                      	st		X, character
                                  
-000636 e021                      	ldi		y_position, 1
-000637 e031                      	ldi		x_position, 1
+000636 e029                      	ldi		y_position, 9
+000637 e033                      	ldi		x_position, 3
 000638 df88                      	rcall	GFX_set_array_pos
-000639 e414                      	ldi		character, 68
+000639 e717                      	ldi		character, 119
 00063a 931c                      	st		X, character
                                  
-00063b cfeb                      	rjmp	title_screen
+                                 
+                                 ;OBJECT "Tetris"
+00063b e025                      	ldi		y_position, 5
+00063c e034                      	ldi		x_position, 4
+00063d df83                      	rcall	GFX_set_array_pos
+00063e e514                      	ldi		character, 84
+00063f 931c                      	st		X, character
+                                 	
+000640 e026                      	ldi		y_position, 6
+000641 e034                      	ldi		x_position, 4
+000642 df7e                      	rcall	GFX_set_array_pos
+000643 e615                      	ldi		character, 101
+000644 931c                      	st		X, character
+                                 
+000645 e027                      	ldi		y_position, 7
+000646 e034                      	ldi		x_position, 4
+000647 df79                      	rcall	GFX_set_array_pos
+000648 e714                      	ldi		character, 116
+000649 931c                      	st		X, character
+                                 
+00064a e028                      	ldi		y_position, 8
+00064b e034                      	ldi		x_position, 4
+00064c df74                      	rcall	GFX_set_array_pos
+00064d e712                      	ldi		character, 114
+00064e 931c                      	st		X, character
+                                 
+00064f e029                      	ldi		y_position, 9
+000650 e034                      	ldi		x_position, 4
+000651 df6f                      	rcall	GFX_set_array_pos
+000652 e619                      	ldi		character, 105
+000653 931c                      	st		X, character
+                                 
+000654 e02a                      	ldi		y_position, 10
+000655 e034                      	ldi		x_position, 4
+000656 df6a                      	rcall	GFX_set_array_pos
+000657 e713                      	ldi		character, 115
+000658 931c                      	st		X, character
+                                 
+                                 ;OBJECT "Left Top Piece"
+                                 
+000659 e021                      	ldi		y_position, 1
+00065a e031                      	ldi		x_position, 1
+00065b df65                      	rcall	GFX_set_array_pos
+00065c ed1b                      	ldi		character, 219
+00065d 931c                      	st		X, character
+                                 
+00065e e022                      	ldi		y_position, 2
+00065f e031                      	ldi		x_position, 1
+000660 df60                      	rcall	GFX_set_array_pos
+000661 ed1b                      	ldi		character, 219
+000662 931c                      	st		X, character
+                                 
+000663 e023                      	ldi		y_position, 3
+000664 e031                      	ldi		x_position, 1
+000665 df5b                      	rcall	GFX_set_array_pos
+000666 ed1b                      	ldi		character, 219
+000667 931c                      	st		X, character
+                                 
+000668 e024                      	ldi		y_position, 4
+000669 e031                      	ldi		x_position, 1
+00066a df56                      	rcall	GFX_set_array_pos
+00066b ed1b                      	ldi		character, 219
+00066c 931c                      	st		X, character
+                                 
+                                 ;OBJECT "Left Bottom Piece"
+                                 
+00066d e021                      	ldi		y_position, 1
+00066e e034                      	ldi		x_position, 4
+00066f df51                      	rcall	GFX_set_array_pos
+000670 e018                      	ldi		character, 8
+000671 931c                      	st		X, character
+                                 
+000672 e021                      	ldi		y_position, 1
+000673 e035                      	ldi		x_position, 5
+000674 df4c                      	rcall	GFX_set_array_pos
+000675 e018                      	ldi		character, 8
+000676 931c                      	st		X, character
+                                 
+000677 e021                      	ldi		y_position, 1
+000678 e036                      	ldi		x_position, 6
+000679 df47                      	rcall	GFX_set_array_pos
+00067a e018                      	ldi		character, 8
+00067b 931c                      	st		X, character
+                                 
+00067c e022                      	ldi		y_position, 2
+00067d e036                      	ldi		x_position, 6
+00067e df42                      	rcall	GFX_set_array_pos
+00067f e018                      	ldi		character, 8
+000680 931c                      	st		X, character
+                                 
+                                 ;OBJECT "Right Piece"
+                                 
+000681 e02d                      	ldi		y_position, 13
+000682 e031                      	ldi		x_position, 1
+000683 df3d                      	rcall	GFX_set_array_pos
+000684 e01a                      	ldi		character, 10
+000685 931c                      	st		X, character
+                                 
+000686 e02e                      	ldi		y_position, 14
+000687 e031                      	ldi		x_position, 1
+000688 df38                      	rcall	GFX_set_array_pos
+000689 e01a                      	ldi		character, 10
+00068a 931c                      	st		X, character
+                                 
+00068b e02d                      	ldi		y_position, 13
+00068c e032                      	ldi		x_position, 2
+00068d df33                      	rcall	GFX_set_array_pos
+00068e e01a                      	ldi		character, 10
+00068f 931c                      	st		X, character
+                                 
+000690 e02e                      	ldi		y_position, 14
+000691 e032                      	ldi		x_position, 2
+000692 df2e                      	rcall	GFX_set_array_pos
+000693 e01a                      	ldi		character, 10
+000694 931c                      	st		X, character
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 	
+                                 
+000695 cf91                      	rjmp	title_screen
                                  
                                  
                                  refresh: ;refreshes the screen
-00063c 930f                      	PUSH			reg_workhorse
-00063d 9100 003f                 	lds				reg_workhorse, CPU_SREG
-00063f 930f                      	PUSH			reg_workhorse
+000696 930f                      	PUSH			reg_workhorse
+000697 9100 003f                 	lds				reg_workhorse, CPU_SREG
+000699 930f                      	PUSH			reg_workhorse
                                  
-000640 e001                      	ldi				reg_workhorse, 0b00000001
-000641 dfaa                      	rcall			GFX_refresh_screen
-000642 9300 0a0b                 	sts				TCA0_SINGLE_INTFLAGS, reg_workhorse
+00069a e001                      	ldi				reg_workhorse, 0b00000001
+00069b df50                      	rcall			GFX_refresh_screen
+00069c 9300 0a0b                 	sts				TCA0_SINGLE_INTFLAGS, reg_workhorse
                                  
-000644 910f                      	POP				reg_workhorse
-000645 9300 003f                 	sts				CPU_SREG, reg_workhorse
-000647 910f                      	POP				reg_workhorse
+00069e 910f                      	POP				reg_workhorse
+00069f 9300 003f                 	sts				CPU_SREG, reg_workhorse
+0006a1 910f                      	POP				reg_workhorse
                                  																	
-000648 9518                      	reti
+0006a2 9518                      	reti
 
 
 RESOURCE USE INFORMATION
@@ -6292,9 +6416,9 @@ counted separately from r26..r31 here.
 .dseg memory usage only counts static data declared with .byte
 
 "ATtiny416" register use summary:
-x  :   6 y  :   0 z  :   2 r0 :   3 r1 :   3 r2 :   0 r3 :   0 r4 :   0 
+x  :  24 y  :   0 z  :   2 r0 :   3 r1 :   3 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:  73 r17:  27 r18:  17 r19:  15 r20:   5 
+r13:   0 r14:   0 r15:   0 r16:  73 r17:  63 r18:  35 r19:  33 r20:   5 
 r21:   7 r22:   4 r23:  16 r24:  16 r25:   8 r26:   4 r27:   4 r28:   0 
 r29:   0 r30:   3 r31:   3 
 Registers used: 18 out of 35 (51.4%)
@@ -6310,21 +6434,21 @@ clh   :   0 cli   :   0 cln   :   0 clr   :   8 cls   :   0 clt   :   0
 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 cpi   :   7 
 cpse  :   0 dec   :  10 des   :   0 eor   :   0 fmul  :   0 fmuls :   0 
 fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   6 ld    :   1 
-ldd   :   0 ldi   :  45 lds   :  19 lpm   :   2 lsl   :   1 lsr   :   1 
+ldd   :   0 ldi   :  99 lds   :  19 lpm   :   2 lsl   :   1 lsr   :   1 
 mov   :   3 movw  :   0 mul   :   1 muls  :   0 mulsu :   0 neg   :   0 
 nop   :   3 or    :   0 ori   :   0 out   :   0 pop   :  24 push  :  24 
-rcall :  18 ret   :  18 reti  :   1 rjmp  :  14 rol   :   0 ror   :   0 
+rcall :  36 ret   :  18 reti  :   1 rjmp  :  14 rol   :   0 ror   :   0 
 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   0 sbiw  :   0 
 sbr   :   6 sbrc  :   0 sbrs  :   4 sec   :   0 seh   :   0 sei   :   1 
 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 sez   :   0 
-sleep :   0 spm   :   0 st    :   5 std   :   0 sts   :  25 sub   :   0 
+sleep :   0 spm   :   0 st    :  23 std   :   0 sts   :  25 sub   :   0 
 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
 Instructions used: 30 out of 112 (26.8%)
 
 "ATtiny416" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000c92    634   2076   2710    4096  66.2%
+[.cseg] 0x000000 0x000d46    814   2076   2890    4096  70.6%
 [.dseg] 0x003f00 0x003f80      0    128    128     256  50.0%
 [.eseg] 0x000000 0x000000      0      0      0     128   0.0%
 

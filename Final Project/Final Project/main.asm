@@ -49,8 +49,10 @@
 .cseg
 .org 0x0000
 	rjmp setup
-.org 0x0008
+.org 0x0008 ;Timer interrupt for refresh screen
 	rjmp	refresh
+.org 0x0004 ;PortB interrupt for game start
+	rjmp	game_loop
 .org 0x0100
 
 .equ		OLED_WIDTH = 128
@@ -82,30 +84,149 @@ setup:
 
 
 ;-------------------------LOOPS--------------------------------
-title_screen:	;draws the items on the screen
-	ldi		y_position, 0
-	ldi		x_position, 0
-	rcall	GFX_set_array_pos
-	ldi		character, 13
-	st		X, character
-	
-	ldi		y_position, 1
-	ldi		x_position, 0
-	rcall	GFX_set_array_pos
-	ldi		character, 90
-	st		X, character
+title_screen:	;draws the title screen until button is pressed
 
-	ldi		y_position, 0
-	ldi		x_position, 1
-	rcall	GFX_set_array_pos
-	ldi		character, 228
-	st		X, character
-
-	ldi		y_position, 1
-	ldi		x_position, 1
+;OBJECT "Drews"
+	ldi		y_position, 6
+	ldi		x_position, 3
 	rcall	GFX_set_array_pos
 	ldi		character, 68
 	st		X, character
+	
+	ldi		y_position, 7
+	ldi		x_position, 3
+	rcall	GFX_set_array_pos
+	ldi		character, 114
+	st		X, character
+
+	ldi		y_position, 8
+	ldi		x_position, 3
+	rcall	GFX_set_array_pos
+	ldi		character, 101
+	st		X, character
+
+	ldi		y_position, 9
+	ldi		x_position, 3
+	rcall	GFX_set_array_pos
+	ldi		character, 119
+	st		X, character
+
+
+;OBJECT "Tetris"
+	ldi		y_position, 5
+	ldi		x_position, 4
+	rcall	GFX_set_array_pos
+	ldi		character, 84
+	st		X, character
+	
+	ldi		y_position, 6
+	ldi		x_position, 4
+	rcall	GFX_set_array_pos
+	ldi		character, 101
+	st		X, character
+
+	ldi		y_position, 7
+	ldi		x_position, 4
+	rcall	GFX_set_array_pos
+	ldi		character, 116
+	st		X, character
+
+	ldi		y_position, 8
+	ldi		x_position, 4
+	rcall	GFX_set_array_pos
+	ldi		character, 114
+	st		X, character
+
+	ldi		y_position, 9
+	ldi		x_position, 4
+	rcall	GFX_set_array_pos
+	ldi		character, 105
+	st		X, character
+
+	ldi		y_position, 10
+	ldi		x_position, 4
+	rcall	GFX_set_array_pos
+	ldi		character, 115
+	st		X, character
+
+;OBJECT "Left Top Piece"
+
+	ldi		y_position, 1
+	ldi		x_position, 1
+	rcall	GFX_set_array_pos
+	ldi		character, 219
+	st		X, character
+
+	ldi		y_position, 2
+	ldi		x_position, 1
+	rcall	GFX_set_array_pos
+	ldi		character, 219
+	st		X, character
+
+	ldi		y_position, 3
+	ldi		x_position, 1
+	rcall	GFX_set_array_pos
+	ldi		character, 219
+	st		X, character
+
+	ldi		y_position, 4
+	ldi		x_position, 1
+	rcall	GFX_set_array_pos
+	ldi		character, 219
+	st		X, character
+
+;OBJECT "Left Bottom Piece"
+
+	ldi		y_position, 1
+	ldi		x_position, 4
+	rcall	GFX_set_array_pos
+	ldi		character, 8
+	st		X, character
+
+	ldi		y_position, 1
+	ldi		x_position, 5
+	rcall	GFX_set_array_pos
+	ldi		character, 8
+	st		X, character
+
+	ldi		y_position, 1
+	ldi		x_position, 6
+	rcall	GFX_set_array_pos
+	ldi		character, 8
+	st		X, character
+
+	ldi		y_position, 2
+	ldi		x_position, 6
+	rcall	GFX_set_array_pos
+	ldi		character, 8
+	st		X, character
+
+;OBJECT "Right Piece"
+
+	ldi		y_position, 13
+	ldi		x_position, 1
+	rcall	GFX_set_array_pos
+	ldi		character, 10
+	st		X, character
+
+	ldi		y_position, 14
+	ldi		x_position, 1
+	rcall	GFX_set_array_pos
+	ldi		character, 10
+	st		X, character
+
+	ldi		y_position, 13
+	ldi		x_position, 2
+	rcall	GFX_set_array_pos
+	ldi		character, 10
+	st		X, character
+
+	ldi		y_position, 14
+	ldi		x_position, 2
+	rcall	GFX_set_array_pos
+	ldi		character, 10
+	st		X, character
+
 
 	rjmp	title_screen
 
