@@ -12,9 +12,13 @@
 ;defines a basic workhorse register
 .def		reg_workhorse = r16
 ;defines the coordinate registers (for gameplay only, title screen inverts these)
-.def		x_position = r19
-.def		y_position = r18
-.def		character = r17
+.def		x_write		 = r19
+.def		y_write		 = r18
+.def		character	 = r17
+.def		adc_value	 = r20
+.def		counter		 = r21
+
+
 
 ;------MACRO SUBSECTION------
 .macro write_16_to_IO											; macro for writing to a 16-bit IO register. parameters are:
@@ -22,26 +26,6 @@
 						sts			@0, @2						; - [1] value
 						ldi			@2, high(@1)				; - [2] general purpose register to be used
 						sts			@0+1, @2					; - e.g.: write_16_to_IO TCA0_SINGLE_CMP0, 1024, reg_workhorse 
-.endMacro
-
-.macro set_active_box
-
-.endmacro
-
-.macro _rotate
-
-.endmacro
-
-.macro new_piece
-
-.endmacro
-
-.macro move_right
-
-.endmacro
-
-.macro move_left
-
 .endmacro
 
 
@@ -51,8 +35,8 @@
 	rjmp setup
 .org 0x0008 ;Timer interrupt for refresh screen
 	rjmp	refresh
-.org 0x0004 ;PortB interrupt for game start
-	rjmp	game_loop
+.org 0x0011 ;ADC interrupt
+	rjmp	update_position
 .org 0x0100
 
 .equ		OLED_WIDTH = 128
@@ -78,165 +62,50 @@ setup:
 
 	ldi		reg_workhorse, 0b00000001
 	sts		TCA0_SINGLE_INTCTRL, reg_workhorse	
+
+	;Configure PortB
+
+	ldi		reg_workhorse, 0b00000000
+	sts		PORTB_DIR, reg_workhorse
+
+	;ldi		reg_workhorse, 0b10000101
+	;sts		PORTB_PIN0CTRL, reg_workhorse
+
+	;Configure the ADC
+
+	ldi		reg_workhorse, 0b00000001
+	sts		ADC0_CTRLA, reg_workhorse
+
+	ldi		reg_workhorse, 0b00000000
+	sts		ADC0_CTRLB, reg_workhorse
+
+	ldi		reg_workhorse, 0b00010001
+	sts		ADC0_CTRLC, reg_workhorse
+
+	ldi		reg_workhorse, 0x08
+	sts		ADC0_MUXPOS,   reg_workhorse
+
 	sei
 
+game_setup:
+	
+	rcall	GFX_clear_array
+	rcall	delay_1s
+	rcall	setup_screen
+	rjmp	game_loop
 ;--------------------------------------------------------------
 
 
 ;-------------------------LOOPS--------------------------------
-title_screen:	;draws the title screen until button is pressed
-
-;OBJECT "Drews"
-	ldi		y_position, 6
-	ldi		x_position, 3
-	rcall	GFX_set_array_pos
-	ldi		character, 68
-	st		X, character
+game_loop:
 	
-	ldi		y_position, 7
-	ldi		x_position, 3
-	rcall	GFX_set_array_pos
-	ldi		character, 114
-	st		X, character
 
-	ldi		y_position, 8
-	ldi		x_position, 3
-	rcall	GFX_set_array_pos
-	ldi		character, 101
-	st		X, character
-
-	ldi		y_position, 9
-	ldi		x_position, 3
-	rcall	GFX_set_array_pos
-	ldi		character, 119
-	st		X, character
-
-
-;OBJECT "Tetris"
-	ldi		y_position, 5
-	ldi		x_position, 4
-	rcall	GFX_set_array_pos
-	ldi		character, 84
-	st		X, character
-	
-	ldi		y_position, 6
-	ldi		x_position, 4
-	rcall	GFX_set_array_pos
-	ldi		character, 101
-	st		X, character
-
-	ldi		y_position, 7
-	ldi		x_position, 4
-	rcall	GFX_set_array_pos
-	ldi		character, 116
-	st		X, character
-
-	ldi		y_position, 8
-	ldi		x_position, 4
-	rcall	GFX_set_array_pos
-	ldi		character, 114
-	st		X, character
-
-	ldi		y_position, 9
-	ldi		x_position, 4
-	rcall	GFX_set_array_pos
-	ldi		character, 105
-	st		X, character
-
-	ldi		y_position, 10
-	ldi		x_position, 4
-	rcall	GFX_set_array_pos
-	ldi		character, 115
-	st		X, character
-
-;OBJECT "Left Top Piece"
-
-	ldi		y_position, 1
-	ldi		x_position, 1
-	rcall	GFX_set_array_pos
-	ldi		character, 219
-	st		X, character
-
-	ldi		y_position, 2
-	ldi		x_position, 1
-	rcall	GFX_set_array_pos
-	ldi		character, 219
-	st		X, character
-
-	ldi		y_position, 3
-	ldi		x_position, 1
-	rcall	GFX_set_array_pos
-	ldi		character, 219
-	st		X, character
-
-	ldi		y_position, 4
-	ldi		x_position, 1
-	rcall	GFX_set_array_pos
-	ldi		character, 219
-	st		X, character
-
-;OBJECT "Left Bottom Piece"
-
-	ldi		y_position, 1
-	ldi		x_position, 4
-	rcall	GFX_set_array_pos
-	ldi		character, 8
-	st		X, character
-
-	ldi		y_position, 1
-	ldi		x_position, 5
-	rcall	GFX_set_array_pos
-	ldi		character, 8
-	st		X, character
-
-	ldi		y_position, 1
-	ldi		x_position, 6
-	rcall	GFX_set_array_pos
-	ldi		character, 8
-	st		X, character
-
-	ldi		y_position, 2
-	ldi		x_position, 6
-	rcall	GFX_set_array_pos
-	ldi		character, 8
-	st		X, character
-
-;OBJECT "Right Piece"
-
-	ldi		y_position, 13
-	ldi		x_position, 1
-	rcall	GFX_set_array_pos
-	ldi		character, 10
-	st		X, character
-
-	ldi		y_position, 14
-	ldi		x_position, 1
-	rcall	GFX_set_array_pos
-	ldi		character, 10
-	st		X, character
-
-	ldi		y_position, 13
-	ldi		x_position, 2
-	rcall	GFX_set_array_pos
-	ldi		character, 10
-	st		X, character
-
-	ldi		y_position, 14
-	ldi		x_position, 2
-	rcall	GFX_set_array_pos
-	ldi		character, 10
-	st		X, character
-
-
-	rjmp	title_screen
-
-
+;--------------------------Subroutines-----------------------------
 refresh: ;refreshes the screen
 	PUSH			reg_workhorse
 	lds				reg_workhorse, CPU_SREG
 	PUSH			reg_workhorse
 
-	ldi				reg_workhorse, 0b00000001
 	rcall			GFX_refresh_screen
 	sts				TCA0_SINGLE_INTFLAGS, reg_workhorse
 
@@ -245,3 +114,82 @@ refresh: ;refreshes the screen
 	POP				reg_workhorse
 																	
 	reti
+
+update_position:
+	push	reg_workhorse
+	lds		reg_workhorse, CPU_SREG
+	push	reg_workhorse
+
+	lds		adc_value, ADC0_RES
+	;WRITE BLOCKS TO PROPER POSITION------
+	;Clear Bottom Row
+	ldi		y_write, 0x00
+	ldi		x_write, 0x00
+	ldi		counter, 0x00
+	rcall	clr_btm_row
+	;Write New Blocks
+	ldi		y_write, 0x00
+	ldi		counter, 0x00
+	rcall	write_shield
+
+	;-------------------------------------
+	ldi		workhorse, 0x01
+	sts		ADC0_INTFLAGS, reg_workhorse
+	sts		ADC0_COMMAND, reg_workhorse
+
+	pop		reg_workhorse
+	sts		CPU_SREG, reg_workhorse
+	pop		reg_workhorse
+
+	reti
+
+setup_screen:
+	ldi		reg_workhorse, 0b00000001
+	sts		ADC0_COMMAND, reg_workhorse
+	rcall	delay_1s
+	ret
+
+clr_btm_row:
+	rcall	GFX_set_array_pos
+	ldi		character, 0xFF
+	st		X, character
+	inc		x_write
+	inc		counter
+	ldi		reg_workhorse, 8
+	cp		counter, reg_workhorse
+	breq	return
+	rjmp	clr_btm_row
+	return:
+		ret
+
+write_shield:
+	clc
+	rol		adc_result
+	ldi		reg_workhorse, 0x01
+	cpc		reg_workhorse
+	breq	set_x_write
+	inc		counter
+	rjmp	write_shield
+	set_x_write:
+		mov		x_write, counter
+		ldi		y_write, 0x00
+		rcall	GFX_set_array_pos
+
+		ldi		character, 219
+		st		X, character
+		inc		x_write
+		rcall	GFX_set_array_pos
+		st		X, character
+
+		ret
+
+
+
+
+
+
+
+
+
+
+

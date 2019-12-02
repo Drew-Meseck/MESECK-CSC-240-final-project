@@ -5,56 +5,43 @@ Setup:
 	Port B to input
 	Set-up ADC Interrupts
 	Set-up Timer Interrupts
-	
-	Initialize piece arrays in memory //these contain all the initial pieces
-					  //by some offset and arrays for their rotations
-					  //this will allow for spawning new pieces
-					  //and rotating them by pointing to different
-					  //offsets and positions in the array
-
-	Initialize macros to reference 4x4 page piece space.
 
 Title Screen:
 	Write title Screen Data
 	When Timer Interrupt is called refresh Screen
+	Port B interrupt starts the game.
 	
 
 Game:
-	Spawn a Piece
-	delay 1s
-	Try to move piece down screen
-	if can:
-		move piece down one space
-	if cannot: 
-		lock piece into place
-		if complete line:
-			clear line
-			move all above lines down
-		else:
-			do nothing
-		spawn new piece at new potentiometer input location
+	Randomly Spawn New Projectile at top (maybe not always)
+	Move all projectiles down
+	if Projectile is at y of 1 and Sheild is at same x:
+		increment score counter
+		check win condition
+		clear projectile
+	if Projectile is at y of 0:
+		increment loss counter
+		check lose condition
+		clear projectile
+	loop Game 
 
+	
 	if ADC interrupt:
 		take adc result
-		set x position of piece box to a division of the adc result
-		if piece segment hits edge of screen:
-			stop the translation
-			//empty columns of the 4x4 piece reference can go off the screen
-			//lit boxes that makeup the piece cannot
-		else:
-			continue
-	
-	if rotate button pressed:
-		if counter > 4:
-			set pointer to initial piece offset
-		if counter <= 4:
-			increment piece pointer to next rotation array		
+		use ROL to find the MSB of adc(low) result and store that in a counter
+		assign that counter value to the x position of the first of the two blocks
+		clear bottom row
+		write new shield using new x position
+		return from interrupt
 			
-	If timer interrupt:
-		refresh and write the new piece positions to the screen
+			
+	If timer interrupt:(60Hz)
+		refresh and write the new positions of objects to the screen
+		return from interrupt
 
-	
-	
+
+
+
 
 			
 	
