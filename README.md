@@ -48,11 +48,22 @@ The unique aspect of this project as opposed to most other versions of Tetris is
 
 
 ------------------------------------------Alpha Updates to Project Framework----------------------------------------------------
-
+Changed quite literally the whole project other than the hardware design. 
+Can display the Paddle and an Arrow.
 
 
 -------------------------------------------Beta Updates to Project Framework----------------------------------------------------
+CURRENT FEATURES:
+    Full movment of the paddle established (its actually very smooth and consistent too).
+    TECHNICALLY the movement of the arrow down works (it should and when I step through it it should work) but there is an issue between the delay for the game timer and the refreshing of the screen so it gets stuck somehow I have no idea how.
+    I did sacrifice a bit as the ADC only kind of runs in interrupt mode (technically it still does but it only starts and stops within the confines of setting array positions in the refresh interrupt so it is kind of cheating).
 
+STILL LEFT:
+    Fixing the arrows movement
+    Implement random x position generation for the arrows
+    Check win/loss state
+    win/loss screens that end the game.
+    Minor aesthetic fixes.
 
 
 --------------------------------------------------Release Version Notes---------------------------------------------------------

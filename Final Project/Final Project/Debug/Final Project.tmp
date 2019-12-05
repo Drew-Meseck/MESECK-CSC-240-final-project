@@ -27,10 +27,9 @@
   <FILE>Final Project.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <setup><FILE>C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm</FILE><LINE>97</LINE></setup>
-  <refresh><FILE>C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm</FILE><LINE>156</LINE></refresh>
-  <rotate><FILE>C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm</FILE><LINE>172</LINE></rotate>
-  <game_setup><FILE>C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm</FILE><LINE>142</LINE></game_setup>
+  <setup><FILE>C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm</FILE><LINE>52</LINE></setup>
+  <refresh><FILE>C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm</FILE><LINE>104</LINE></refresh>
+  <update_position><FILE>C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm</FILE><LINE>118</LINE></update_position>
   <delay_1s><FILE>C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\lib_delay.asm</FILE><LINE>14</LINE></delay_1s>
   <delay_1s_cont><FILE>C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\lib_delay.asm</FILE><LINE>21</LINE></delay_1s_cont>
   <delay_100ms><FILE>C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\lib_delay.asm</FILE><LINE>38</LINE></delay_100ms>
@@ -329,7 +328,12 @@
   <_GFX_draw_shape><FILE>C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\lib_GFX.asm</FILE><LINE>130</LINE></_GFX_draw_shape>
   <_GFX_draw_shape_loop><FILE>C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\lib_GFX.asm</FILE><LINE>143</LINE></_GFX_draw_shape_loop>
   <_GFX_draw_shape_end><FILE>C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\lib_GFX.asm</FILE><LINE>150</LINE></_GFX_draw_shape_end>
-  <game_loop><FILE>C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm</FILE><LINE>152</LINE></game_loop>
-  <rotate_reset><FILE>C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm</FILE><LINE>183</LINE></rotate_reset>
+  <game_setup><FILE>C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm</FILE><LINE>90</LINE></game_setup>
+  <setup_screen><FILE>C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm</FILE><LINE>146</LINE></setup_screen>
+  <game_loop><FILE>C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm</FILE><LINE>100</LINE></game_loop>
+  <clr_btm_row><FILE>C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm</FILE><LINE>152</LINE></clr_btm_row>
+  <write_shield><FILE>C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm</FILE><LINE>165</LINE></write_shield>
+  <return><FILE>C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm</FILE><LINE>162</LINE></return>
+  <set_x_write><FILE>C:\Users\droot\Documents\Junior Year Fall\Algorithms and Data Structures\MESECK-CSC-240-final-project\Final Project\Final Project\main.asm</FILE><LINE>172</LINE></set_x_write>
  </LABELS>
 </ASSEMBLER_INFO>
