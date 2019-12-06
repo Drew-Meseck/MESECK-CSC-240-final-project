@@ -42,11 +42,6 @@ The unique aspect of this project as opposed to most other versions of Tetris is
 
 **********This project has been found to be impossible with the level of required program memory for all of the pieces to either be written to other parts of memory and to refer to them dynamically as intended. If there was a different display framework available this could largely be avoided, but the Adafruit Libraries take up too much of the array space in program memory. A new project has been worked out, and all relevant files will be updated.***********
 
-
------------------------------------As other problems arise they will be recorded below------------------------------------------
-
-
-
 ------------------------------------------Alpha Updates to Project Framework----------------------------------------------------
 Changed quite literally the whole project other than the hardware design. 
 Can display the Paddle and an Arrow.

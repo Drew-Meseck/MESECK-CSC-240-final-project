@@ -11,7 +11,8 @@
 
 ;defines a basic workhorse registers
 .def		reg_workhorse    = r16
-.def		reg_workhorse_2	 = r25
+.def		main_counter	 = r25
+.def		difficulty		 = r28 ;Y pointer not used! So this is fine I promise		
 ;defines the coordinate registers (for gameplay only, title screen inverts these)
 .def		x_write		     = r19
 .def		y_write			 = r18
@@ -21,6 +22,7 @@
 .def		counter			 = r22
 .def		win_counter		 = r23
 .def		lose_counter	 = r24
+
 
 
 
@@ -37,8 +39,8 @@
 .cseg
 .org 0x0000
 	rjmp setup
-.org 0x0008 ;Timer interrupt for refresh screen
-	rjmp	refresh
+;.org 0x0008 ;Timer interrupt for refresh screen
+	;rjmp	refresh
 ;.org 0x0011 ;ADC interrupt
 	;rjmp	update_position
 .org 0x0080
@@ -89,37 +91,45 @@ setup:
 	ldi		reg_workhorse, 0x08
 	sts		ADC0_MUXPOS,   reg_workhorse
 
-	sei
-
 game_setup:
 	ldi		win_counter, 0x00
 	ldi		lose_counter, 0x00
+	ldi		difficulty, 30
+	mov		main_counter, difficulty
 	rcall	GFX_clear_array
 	ldi		reg_workhorse, 0b00000001
 	sts		ADC0_COMMAND, reg_workhorse
+	;rcall	spawn_proj
 	rjmp	game_loop
 ;--------------------------------------------------------------
 
 
 ;-------------------------LOOPS--------------------------------
 game_loop:
-	rcall	spawn_proj
-	rcall	delay_10ms
-	rcall	move_projectiles_down
+	rcall	refresh
+	rcall	delay_1ms
+	dec		main_counter
+	cpi		main_counter, 0
+	breq	move_projectiles_down
 	rjmp	game_loop
 
 ;--------------------------Subroutines-----------------------------
 spawn_proj:
-	;call rng to get x position or no spawn
-	ldi		x_write, 0x00 ;TEMP
+	lds		adc_value_low, ADC0_RES
+	lsr		adc_value_low
+	rol		adc_value_low
+	add		adc_value_low, reg_workhorse
+	andi	adc_value_low, 0b00000111
+	mov		x_write, adc_value_low ;TEMP
 	cpi		x_write, 0x08
-	brlo	new_proj
-	ret
+	brsh	return_2
 	new_proj:
 		ldi		y_write, 0x0E
 		rcall	GFX_set_array_pos
 		ldi		character, 27 
 		st		X, character
+		ret
+	return_2:
 		ret
 
 move_projectiles_down:
@@ -129,9 +139,11 @@ move_projectiles_down:
 	ldi		x_write, 0x00
 	ldi		y_write, 0x02
 	rcall	move_down
-	ret
+	mov		main_counter, difficulty
+	rcall	spawn_proj
+	rjmp	game_loop
 	move_down:
-		cpi		x_write, 0x07
+		cpi		x_write, 0x08
 		breq	return_1
 		rcall	move_down_col
 		rjmp	move_down
@@ -173,16 +185,23 @@ btm_row_check:
 	process_proj:
 		dec		y_write
 		rcall	GFX_set_array_pos
-		ld		reg_workhorse_2, X
-		cpi		reg_workhorse_2, 219
+		ld		reg_workhorse, X
+		cpi		reg_workhorse, 219
 		breq	win_inc
 		inc		lose_counter
 		rcall	check_win_loss
 		inc		y_write
+		rcall	GFX_set_array_pos
+		ldi		reg_workhorse, 0xFF
+		st		X, reg_workhorse
 		ret
 		win_inc:
 			inc		win_counter
 			rcall	check_win_loss
+			inc		y_write
+			rcall	GFX_set_array_pos
+			ldi		reg_workhorse, 0xFF
+			st		X, reg_workhorse
 			ret
 	return_1:
 		ret
@@ -193,13 +212,37 @@ btm_row_check:
 	breq	loss_screen	
 	ret
 win_screen:
-	rcall	GFX_clear_array
-	ldi		character, 65
-
-	nop
+	cpi		difficulty, 10
+	breq	return_1
+	subi	difficulty, 5
+	rjmp	return_1
 loss_screen:
 	rcall	GFX_clear_array
-	nop
+	rjmp	loss
+	loss:
+	ldi		x_write, 4
+	ldi		y_write, 5
+	rcall	GFX_set_array_pos
+	ldi		character, 76
+	st		X, character
+	inc		y_write
+	ldi		character, 79
+	rcall	GFX_set_array_pos
+	st		X, character
+	inc		y_write
+	ldi		character, 83
+	rcall	GFX_set_array_pos
+	st		X, character
+	inc		y_write
+	ldi		character, 69
+	rcall	GFX_set_array_pos
+	st		X, character
+	inc		y_write
+	ldi		character, 82
+	rcall	GFX_set_array_pos
+	st		X, character
+	rcall	GFX_refresh_screen
+	rjmp	loss
 
 
 refresh: ;refreshes the screen
