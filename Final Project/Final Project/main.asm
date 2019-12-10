@@ -4,6 +4,7 @@
 ; Created: 11/20/2019 11:48:12 PM
 ; Author : Drew Meseck
 ;
+; Release Build: V1.0.0
 
 
 ; Replace with your application code
@@ -33,9 +34,9 @@
 						ldi			@2, high(@1)				; - [2] general purpose register to be used
 						sts			@0+1, @2					; - e.g.: write_16_to_IO TCA0_SINGLE_CMP0, 1024, reg_workhorse 
 .endmacro
-
-
 ;----END MACRO SUBSECTION----
+
+
 .cseg
 .org 0x0000
 	rjmp setup
@@ -60,6 +61,8 @@ setup:
 	rcall		GFX_clear_array			;Clear the Screen
 	rcall		GFX_refresh_screen		;Refresh the Screen
 
+
+;--------------Some of this is an artifact when the game used interrupts---------
 	;Set up the timer for interrupts.
 	ldi		reg_workhorse, 0b0001111
 	sts		TCA0_SINGLE_CTRLA, reg_workhorse
@@ -105,6 +108,8 @@ game_setup:
 
 
 ;-------------------------LOOPS--------------------------------
+
+;Main Game Loop
 game_loop:
 	rcall	refresh
 	rcall	delay_1ms
@@ -113,35 +118,45 @@ game_loop:
 	breq	move_projectiles_down
 	rjmp	game_loop
 
-;--------------------------Subroutines-----------------------------
+;--------------------------SUBROUTINES-----------------------------
+
+
+
+;-------------------------Spawn a projectile-----------------------
 spawn_proj:
+;RANDOM GENERATION BASED ON ADC, reg_workhorse value, and a few shifts
 	lds		adc_value_low, ADC0_RES
 	lsr		adc_value_low
 	rol		adc_value_low
 	add		adc_value_low, reg_workhorse
 	andi	adc_value_low, 0b00000111
+;Stores the value, checks to see if it should spawn a new projectile, and moves on
 	mov		x_write, adc_value_low ;TEMP
 	cpi		x_write, 0x08
 	brsh	return_2
+;Spawns a new projectile given the "random" input
 	new_proj:
 		ldi		y_write, 0x0E
 		rcall	GFX_set_array_pos
 		ldi		character, 27 
 		st		X, character
 		ret
+;-------------------------------------------------------------------
 	return_2:
 		ret
 
+;----------------Move all projectiles down the screen---------------
 move_projectiles_down:
 	ldi		x_write, 0x00
 	ldi		y_write, 0x01
-	rcall	btm_row_check
+	rcall	btm_row_check				;Check the scoring
 	ldi		x_write, 0x00
 	ldi		y_write, 0x02
-	rcall	move_down
+	rcall	move_down					;Move other projectiles down
 	mov		main_counter, difficulty
 	rcall	spawn_proj
 	rjmp	game_loop
+	;Rest is a nested for loop that checks the entirety of the screen and actually moves the projectiles
 	move_down:
 		cpi		x_write, 0x08
 		breq	return_1
@@ -150,9 +165,7 @@ move_projectiles_down:
 		inc_x:
 			inc		x_write
 			ldi		y_write, 0x02
-			rjmp	move_down
-
-		
+			rjmp	move_down	
 	move_down_col:
 		rcall	GFX_set_array_pos
 		ld		reg_workhorse, X
@@ -172,7 +185,9 @@ move_projectiles_down:
 			ldi		reg_workhorse, 0xFF
 			st		X, reg_workhorse
 			rjmp	move_down_col
+;----------------------------------------------------------------
 
+;---------------Check the scoring row for projectiles------------
 btm_row_check:
 	cpi		x_write, 0x08
 	breq	return_1
@@ -181,16 +196,16 @@ btm_row_check:
 	cpi		reg_workhorse, 27
 	breq	process_proj
 	inc		x_write
-	rjmp	btm_row_check
-	process_proj:
-		dec		y_write
+	rjmp	btm_row_chec 
+	process_proj:						;Processes projectiles found
+		dec		y_write					;decrements the y position
 		rcall	GFX_set_array_pos
 		ld		reg_workhorse, X
-		cpi		reg_workhorse, 219
-		breq	win_inc
-		inc		lose_counter
-		rcall	check_win_loss
-		inc		y_write
+		cpi		reg_workhorse, 219		;checks the space below the projectile
+		breq	win_inc					;if its a paddle increment the score
+		inc		lose_counter			;otherwise remove a life
+		rcall	check_win_loss			;check if a win or loss condition is met
+		inc		y_write					;go back to scoring row
 		rcall	GFX_set_array_pos
 		ldi		reg_workhorse, 0xFF
 		st		X, reg_workhorse
@@ -211,6 +226,11 @@ btm_row_check:
 	cpi		lose_counter, 10
 	breq	loss_screen	
 	ret
+
+;--------------------------------------------------------------
+
+
+;---------------Loss Screen and difficulty up------------------
 win_screen:
 	cpi		difficulty, 10
 	breq	return_1
@@ -243,8 +263,9 @@ loss_screen:
 	st		X, character
 	rcall	GFX_refresh_screen
 	rjmp	loss
+;----------------------------------------------------------
 
-
+;----------------Refresh the Screen------------------------
 refresh: ;refreshes the screen
 	PUSH			reg_workhorse
 	lds				reg_workhorse, CPU_SREG
@@ -266,7 +287,9 @@ refresh: ;refreshes the screen
 	POP				reg_workhorse
 																	
 	reti
+;----------------------------------------------------------
 
+;-------------Update the paddle position-------------------
 update_position:
 	push	reg_workhorse
 	lds		reg_workhorse, CPU_SREG
@@ -285,7 +308,7 @@ update_position:
 
 	;-------------------------------------
 	ldi		reg_workhorse, 0x01
-	sts		ADC0_INTFLAGS, reg_workhorse
+	sts		ADC0_INTFLAGS, reg_workhorse ;Artifact from the old days of interrupts, left in intentionally for revisitng
 	sts		ADC0_COMMAND, reg_workhorse
 
 	pop		reg_workhorse
@@ -295,7 +318,9 @@ update_position:
 	ret
 
 
-;----------------------------------------------------------------------
+;---------------------------------------------------------------
+
+;------------Clear the bottom row to rewrite paddle-------------
 clr_btm_row:
 	rcall	GFX_set_array_pos
 	ldi		character, 0xFF
@@ -307,7 +332,6 @@ clr_btm_row:
 	rjmp	clr_btm_row
 	return:
 		ret
-
 set_x_write:
 	andi	adc_value_high, 0b00000011		
 	rol		adc_value_low
@@ -322,6 +346,7 @@ set_x_write:
 	rcall	GFX_set_array_pos
 	st		X, character
 	ret
+;---------------------------------------------------------------
 
 
 
